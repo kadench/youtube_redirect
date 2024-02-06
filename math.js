@@ -12,17 +12,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
         switch (type) {
             case "addition":
-                a = Math.floor(Math.random() * 900) + 100; // 100 to 999
-                b = Math.floor(Math.random() * 900) + 100; // 100 to 999
+                if (Math.random() < .09) {
+                    a = Math.floor(Math.random() * 900) + 100; // 100 to 999
+                    b = Math.floor(Math.random() * 900) + 100; // 100 to 999
+                }
+                else {
+                    a = Math.floor(Math.random() * 90) + 10; // 100 to 999
+                    b = Math.floor(Math.random() * 90) + 10; // 100 to 999
+                }
                 answer = a + b;
                 break;
             case "multiplication":
                 if (Math.random() < 0.5) { // 50% chance for 'a' or 'b' to be a three-digit number ending in 0
-                    a = (Math.floor(Math.random() * 90) + 10) * 10;
-                    b = Math.floor(Math.random() * 90) + 10;
+                    a = (Math.floor(Math.random() * 90) + 1) * 1;
+                    b = Math.floor(Math.random() * 9) + 1;
                 } else {
-                    a = Math.floor(Math.random() * 90) + 10;
-                    b = (Math.floor(Math.random() * 90) + 10) * 10;
+                    a = Math.floor(Math.random() * 9) + 1;
+                    b = (Math.floor(Math.random() * 90) + 1) * 1;
                 }
                 answer = a * b;
                 break;                
@@ -32,8 +38,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 a = b * answer;
                 break;
             case "subtraction":
-                a = Math.floor(Math.random() * 900) + 100;
-                b = Math.floor(Math.random() * (a - 1)) + 1;
+                if (Math.random() < .09) {
+                    a = Math.floor(Math.random() * 900) + 100;
+                    b = Math.floor(Math.random() * (a - 1)) + 1;
+                }
+                else {
+                    a = Math.floor(Math.random() * 90) + 100;
+                    b = Math.floor(Math.random() * (a - 1)) + 1;
+                }
+                
                 answer = a - b;
                 break;
         }

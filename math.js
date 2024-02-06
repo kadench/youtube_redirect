@@ -73,20 +73,22 @@ document.addEventListener("DOMContentLoaded", function() {
         var userAnswer = parseFloat(answerElement.value);
         showFeedback(userAnswer === correctAnswer, correctAnswer);
         if (userAnswer === correctAnswer) {
-            setTimeout(function() { // Wait for 1 second before redirecting
-                window.location.href = "https://www.youtube.com";
+            // Use location.assign() for redirection
+            setTimeout(function() { 
+                location.assign("https://www.youtube.com");
             }, 1000); // Delay in milliseconds
         } else {
             currentAttempt++;
             if (currentAttempt === 2) {
-                setTimeout(function() { // Wait for 1 second before redirecting
-                    window.location.href = "https://www.youtubekids.com";
+                // Use location.replace() for redirection to YouTube Kids, as it doesn't allow users to hit the back button to return to the quiz
+                setTimeout(function() { 
+                    location.replace("https://www.youtubekids.com");
                 }, 1000); // Delay in milliseconds
             }
             correctAnswer = generateQuestion();
             answerElement.value = ""; // Clear the input field
         }
-    });
+    });    
     function showFeedback(isCorrect, answer) {
         feedbackElement.style.opacity = 0; // Reset opacity to ensure transition effect
         feedbackElement.style.visibility = 'hidden'; // Initially hidden for transition

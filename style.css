@@ -1,0 +1,108 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+img {
+    width: 40%;
+    margin-bottom: .3em;
+}
+
+p {
+    margin: 1em;
+    padding: 0;
+}
+
+#math-form {
+    text-align: center;
+    width: 50%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
+    border-radius: 10px;
+}
+
+#answer {
+    padding: 10px;
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    text-align: center;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+#answer:focus {
+    border-color: #395a96; /* Lighter blue for focus */
+    outline: none;
+}
+
+#check-answer {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: default;
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for color change */
+}
+
+#check-answer {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: gray; /* Default disabled color */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: not-allowed; /* Change cursor to indicate it's not interactable */
+    transition: background-color 0.3s ease-in-out;
+}
+
+#check-answer:not(:disabled) {
+    cursor: pointer; /* Only change cursor to pointer when button is enabled */
+    background-color: gray; /* Default color, will be overridden by JavaScript */
+}
+
+input:not(:placeholder-shown) + #check-answer:not(:disabled),
+#check-answer:not(:disabled):hover {
+    cursor: default;
+}
+
+#answer:focus {
+    border-color: #395a96; /* Apply the new blue to the active entry field border */
+}
+
+#answer {
+    border-color: gray;
+}
+
+#feedback {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Prevents interaction */
+}
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
+.hidden {
+    display: none;
+}

@@ -93,18 +93,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    function showFeedback(isCorrect, userAnswer, answer) {
+    function showFeedback(isCorrect, canswer, answer) {
         feedbackElement.style.opacity = 0;
         feedbackElement.style.visibility = 'hidden';
         setTimeout(() => {
-            feedbackElement.textContent = isCorrect ? `Correct! The answer was ${answer}.` : `Incorrect! The answer was not ${userAnswer}.` + (currentAttempt === 2 ? " Redirecting." : " Try again.");
+            feedbackElement.textContent = isCorrect ? `Correct! The answer was ${answer}!` : `Incorrect! The answer was not ${canswer}.` + (currentAttempt === 2 ? " Redirecting." : " Try again.");
             feedbackElement.className = isCorrect ? 'correct' : 'incorrect';
             feedbackElement.style.visibility = 'visible';
             feedbackElement.style.opacity = 1;
             setTimeout(() => {
                 feedbackElement.style.opacity = 0;
                 setTimeout(() => {
-                    feedbackElement.className = '';
+                    feedbackElement.className = 'hidden';
                     feedbackElement.style.visibility = 'hidden';
                 }, 300);
             }, 3000);

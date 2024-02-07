@@ -75,6 +75,9 @@ footer {
     cursor: pointer; /* Only change cursor to pointer when button is enabled */
     background-color: gray; /* Default color, will be overridden by JavaScript */
 }
+#check-answer:disabled {
+    cursor: not-allowed; /* Only change cursor to pointer when button is enabled */
+}
 
 input:not(:placeholder-shown) + #check-answer:not(:disabled),
 #check-answer:not(:disabled):hover {

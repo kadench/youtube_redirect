@@ -32,7 +32,7 @@ The solution comprises two main components: a website and a standalone Windows a
 
 ## Setup Instructions
 
-1. **Download the Application**: Visit the website to download the standalone application. The link to the `.exe` file is prominently displayed. (You can also download it here: [https://github.com/kadench/youtube_redirect/raw/main/youtube_redirect.exe](https://github.com/kadench/youtube_redirect/raw/main/youtube_redirector.exe)
+1. **Download the Application**: Visit the website to download the standalone application. The link to the `.exe` file is prominently displayed. (You can also download it here: [https://github.com/kadench/youtube_redirect/raw/main/youtube_redirector.exe](https://github.com/kadench/youtube_redirect/raw/main/youtube_redirector.exe)
 2. **Place in Startup Folder**: To ensure the application runs at every system start, press `Win + R` to open the Run dialog, type `shell:startup`, and press Enter. Then, place a shortcut to the downloaded `.exe` file in the Startup folder.
 3. **Use the Website**: Set the website as the home page on your web browsers, or use it as the only allowed method of accessing YouTube on the computers used by your children.
 

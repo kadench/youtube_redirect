@@ -1,9 +1,14 @@
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
 }
@@ -26,6 +31,18 @@ p {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: white;
     border-radius: 10px;
+    /* Ensure the form doesn't grow to push the footer unnecessarily on small screens */
+    flex-shrink: 0;
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    /* Positioning and styling for the footer */
+    background-color: #f0f0f0;
+    color: #000;
+    font-size: 0.8em;
 }
 
 #answer {
@@ -54,18 +71,6 @@ p {
     transition: background-color 0.3s ease-in-out; /* Smooth transition for color change */
 }
 
-#check-answer {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: gray; /* Default disabled color */
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: not-allowed; /* Change cursor to indicate it's not interactable */
-    transition: background-color 0.3s ease-in-out;
-}
-
 #check-answer:not(:disabled) {
     cursor: pointer; /* Only change cursor to pointer when button is enabled */
     background-color: gray; /* Default color, will be overridden by JavaScript */
@@ -73,7 +78,8 @@ p {
 
 input:not(:placeholder-shown) + #check-answer:not(:disabled),
 #check-answer:not(:disabled):hover {
-    cursor: default;
+    cursor: pointer;
+
 }
 
 #answer:focus {

@@ -49,27 +49,34 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Function to toggle the button's disabled state based on the input's content
+    function toggleButtonState() {
+        var shouldDisable = !answerElement.value.trim(); // Disable if input is empty
+        buttonElement.disabled = shouldDisable;
+        // Update cursor style directly in CSS or leave as default behavior for disabled elements
+    }
+
     answerElement.addEventListener("input", function() {
         buttonElement.style.backgroundColor = this.value ? "#395a96" : "gray";
-        buttonElement.style.cursor = this.value ? "pointer" : "default";
+        toggleButtonState(); // Call this function on input change
     });
 
     document.getElementById("math-form").addEventListener("keypress", function(e) {
         if (e.key === "Enter") {
             e.preventDefault();
-            buttonElement.click();
+            if (!buttonElement.disabled) { // Only click if the button is not disabled
+                buttonElement.click();
+            }
         }
     });
 
     buttonElement.addEventListener("click", function(e) {
         e.preventDefault();
-        var userAnswer = answerElement.value;
-        if (parseFloat(userAnswer) === parseFloat(answerElement.value)) {
-            userAnswer = parseFloat(userAnswer)
-        }
-        showFeedback(userAnswer === correctAnswer, userAnswer, correctAnswer);
+        var userAnswer = parseFloat(answerElement.value); // Parse once and reuse
+        var isCorrect = userAnswer === correctAnswer;
+        showFeedback(isCorrect, userAnswer, correctAnswer);
     
-        if (userAnswer === correctAnswer) {
+        if (isCorrect) {
             setTimeout(function() {
                 window.location.replace("https://www.youtube.com");
             }, 1000);
@@ -80,26 +87,30 @@ document.addEventListener("DOMContentLoaded", function() {
                     window.location.replace("https://www.youtubekids.com");
                 }, 1000);
             }
-            correctAnswer = generateQuestion();
+            correctAnswer = generateQuestion(); // Regenerate question for next attempt
             answerElement.value = "";
+            toggleButtonState(); // Ensure button state is updated with new question
         }
     });
 
-    function showFeedback(isCorrect, canswer, answer) {
+    function showFeedback(isCorrect, userAnswer, answer) {
         feedbackElement.style.opacity = 0;
         feedbackElement.style.visibility = 'hidden';
         setTimeout(() => {
-            feedbackElement.textContent = isCorrect ? `Correct! The answer was ${answer}!` : `Incorrect! The answer was not ${canswer}.` + (currentAttempt === 2 ? " Redirecting." : " Try again.");
+            feedbackElement.textContent = isCorrect ? `Correct! The answer was ${answer}.` : `Incorrect! The answer was not ${userAnswer}.` + (currentAttempt === 2 ? " Redirecting." : " Try again.");
             feedbackElement.className = isCorrect ? 'correct' : 'incorrect';
             feedbackElement.style.visibility = 'visible';
             feedbackElement.style.opacity = 1;
             setTimeout(() => {
                 feedbackElement.style.opacity = 0;
                 setTimeout(() => {
-                    feedbackElement.className = 'hidden';
+                    feedbackElement.className = '';
                     feedbackElement.style.visibility = 'hidden';
                 }, 300);
             }, 3000);
         }, 10);
-    }    
+    }
+
+    // Initial check to set the correct initial state of the button
+    toggleButtonState();
 });

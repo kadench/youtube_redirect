@@ -13,14 +13,20 @@ body {
     background-color: #f0f0f0;
 }
 
-img {
-    width: 40%;
+
+img.logo {
+    width: 80px;
+    margin-top: .2em;
     margin-bottom: .3em;
 }
 
 p {
     margin: 1em;
     padding: 0;
+}
+
+h2 {
+    margin-top: .2em;
 }
 
 #math-form {

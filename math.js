@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     answerElement.addEventListener("input", function() {
-        buttonElement.style.backgroundColor = this.value ? "#395a96" : "gray";
+        buttonElement.style.backgroundColor = this.value ? "#ff0000" : "gray";
         toggleButtonState(); // Call this function on input change
     });
 

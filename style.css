@@ -61,7 +61,7 @@ footer {
 }
 
 #answer:focus {
-    border-color: #395a96; /* Lighter blue for focus */
+    border-color: #ff0000; /* Lighter blue for focus */
     outline: none;
 }
 
@@ -92,7 +92,7 @@ input:not(:placeholder-shown) + #check-answer:not(:disabled),
 }
 
 #answer:focus {
-    border-color: #395a96; /* Apply the new blue to the active entry field border */
+    border-color: #ff0000; /* Apply the new blue to the active entry field border */
 }
 
 #answer {

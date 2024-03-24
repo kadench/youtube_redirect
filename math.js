@@ -72,32 +72,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
     buttonElement.addEventListener("click", function(e) {
         e.preventDefault();
-        var userAnswer = parseFloat(answerElement.value); // Parse once and reuse
-        var isCorrect = userAnswer === correctAnswer;
-        showFeedback(isCorrect, userAnswer, correctAnswer);
-    
-        if (isCorrect) {
-            setTimeout(function() {
-                window.location.replace("https://www.youtube.com");
-            }, 1000);
-        } else {
-            currentAttempt++;
-            if (currentAttempt === 2) {
+        var userInput = answerElement.value.trim(); // Get user input and trim whitespace
+        var userAnswer = parseFloat(userInput); // Attempt to parse it as a number
+        if (!isNaN(userAnswer) && userInput !== '') { // Check if the input is a valid number
+            var isCorrect = userAnswer === correctAnswer;
+            showFeedback(isCorrect, userAnswer, correctAnswer);
+        
+            if (isCorrect) {
                 setTimeout(function() {
-                    window.location.replace("https://www.youtubekids.com");
+                    window.location.replace("https://www.youtube.com");
                 }, 1000);
+            } else {
+                currentAttempt++;
+                if (currentAttempt === 2) {
+                    setTimeout(function() {
+                        window.location.replace("https://www.youtubekids.com");
+                    }, 1000);
+                }
+                correctAnswer = generateQuestion(); // Regenerate question for next attempt
             }
-            correctAnswer = generateQuestion(); // Regenerate question for next attempt
-            answerElement.value = "";
-            toggleButtonState(); // Ensure button state is updated with new question
+        } else { // Handle non-numeric input without increasing attempt counter
+            showFeedback(false, null, correctAnswer, true); // Additional argument for non-numeric input
         }
+        answerElement.value = "";
+        toggleButtonState(); // Ensure button state is updated with new question or invalid input
     });
 
-    function showFeedback(isCorrect, canswer, answer) {
+    function showFeedback(isCorrect, canswer, answer, nonNumeric = false) {
         feedbackElement.style.opacity = 0;
         feedbackElement.style.visibility = 'hidden';
         setTimeout(() => {
-            feedbackElement.textContent = isCorrect ? `Correct! The answer was ${answer}!` : `Incorrect! The answer was not ${canswer}.` + (currentAttempt === 2 ? " Redirecting." : " Try again.");
+            if (nonNumeric) {
+                feedbackElement.textContent = "That is not a number. Try again.";
+            } else {
+                feedbackElement.textContent = isCorrect ? `Correct! The answer was ${answer}!` : `Incorrect! The answer was not ${canswer}. Try again.` + (currentAttempt === 2 ? " Redirecting." : "");
+            }
             feedbackElement.className = isCorrect ? 'correct' : 'incorrect';
             feedbackElement.style.visibility = 'visible';
             feedbackElement.style.opacity = 1;
